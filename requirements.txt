@@ -6,7 +6,7 @@ bcc==0.29.1
 beautifulsoup4==4.12.3
 blinker==1.7.0
 Brlapi==0.8.5
-certifi==2023.11.17
+certifi==2024.7.4
 chardet==5.2.0
 click==8.1.6
 cloud-init==24.4
