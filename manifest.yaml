@@ -1,0 +1,106 @@
+packages:
+    greenFaas:
+        app:
+            test:
+                actions:
+                    start:
+                        function: ../action/action.js
+                        suivant: [a1, a7, a4]
+                        annotations:
+                         quality: 1
+                         energy_j: 20
+                    a1:
+                        function: ../action/action.js
+                        suivant: [a5]
+                        annotations:
+                         quality: 0.97
+                         energy_j: 40
+                    a7:
+                        function: ../action/action.js
+                        suivant: [a5]
+                        annotations:
+                         quality: 0.87
+                         energy_j: 34
+                        parallel:
+                            branche1: 
+                                start.branche1:
+                                    function: ../action/action.js
+                                    suivant: [a17,a16]
+                                    annotations:
+                                     quality: 0.71
+                                     energy_j: 23
+                                a17:
+                                    function: ../action/action.js
+                                    suivant: []
+                                    annotations:
+                                     quality: 0.81
+                                     energy_j: 28
+                                a16:
+                                    function: ../action/action.js
+                                    suivant: [] 
+                                    annotations:
+                                     quality: 0.6
+                                     energy_j: 15   
+                            branche2: 
+                                start.branche2:
+                                    function: ../action/action.js
+                                    suivant: [a13,a15]
+                                    annotations:
+                                     quality: 0.5
+                                     energy_j: 15
+                                a15:
+                                    function: ../action/action.js
+                                    suivant: [a14]
+                                    annotations:
+                                     quality: 0.81
+                                     energy_j: 35
+                                a13:
+                                    function: ../action/action.js
+                                    suivant: [a14]
+                                    annotations:
+                                     quality: 0.6
+                                     energy_j: 15
+                                a14:
+                                    function: ../action/action.js
+                                    suivant: []
+                                    annotations:
+                                     quality: 0.81
+                                     energy_j: 25
+                            suivant: [a8]
+                    a4:
+                        function: ../action/action.js
+                        suivant: [a6]
+                        annotations:
+                         quality: 0.7
+                         energy_j: 25
+                    a5:
+                        function: ../action/action.js
+                        suivant: [a11]
+                        annotations:
+                         quality: 0.95
+                         energy_j: 35
+                    a11:
+                        function: ../action/action.js
+                        suivant: [a10]
+                        annotations:
+                         quality: 0.9
+                         energy_j: 32
+                    a10:
+                        function: ../action/action.js
+                        suivant: [a8]
+                        annotations:
+                         quality: 0.85
+                         energy_j: 30
+                    a6:
+                        function: ../action/action.js
+                        suivant: [a8]
+                        annotations:
+                         quality: 0.88
+                         energy_j: 31
+                    a8:
+                        function: ../action/action.js
+                        suivant: []
+                        annotations:
+                         quality: 1
+                         energy_j: 35
+                    
