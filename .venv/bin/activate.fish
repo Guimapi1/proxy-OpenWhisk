@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV /home/c24guima/Documents/project/openwhisk/api-flask/.venv
+set -gx VIRTUAL_ENV /home/c24guima/Documents/project/openwhisk/proxy-OpenWhisk/.venv
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"bin $PATH

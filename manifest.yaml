@@ -17,7 +17,13 @@ packages:
                          energy_j: 40
                     a7:
                         function: ../action/action.js
-                        suivant: [a5]
+                        suivant: [a5, a9]
+                        annotations:
+                         quality: 0.87
+                         energy_j: 34
+                    a9:
+                        function: ../action/action.js
+                        suivant: []
                         annotations:
                          quality: 0.87
                          energy_j: 34
@@ -25,47 +31,47 @@ packages:
                             branche1: 
                                 start.branche1:
                                     function: ../action/action.js
-                                    suivant: [a17,a16]
+                                    suivant: [a2]
                                     annotations:
                                      quality: 0.71
                                      energy_j: 23
-                                a17:
+                                a2:
                                     function: ../action/action.js
                                     suivant: []
                                     annotations:
                                      quality: 0.81
                                      energy_j: 28
-                                a16:
-                                    function: ../action/action.js
-                                    suivant: [] 
-                                    annotations:
-                                     quality: 0.6
-                                     energy_j: 15   
+                                # a16:
+                                #     function: ../action/action.js
+                                #     suivant: [] 
+                                #     annotations:
+                                #      quality: 0.6
+                                #      energy_j: 15   
                             branche2: 
                                 start.branche2:
                                     function: ../action/action.js
-                                    suivant: [a13,a15]
+                                    suivant: [a18,a19]
                                     annotations:
                                      quality: 0.5
                                      energy_j: 15
-                                a15:
-                                    function: ../action/action.js
-                                    suivant: [a14]
-                                    annotations:
-                                     quality: 0.81
-                                     energy_j: 35
-                                a13:
-                                    function: ../action/action.js
-                                    suivant: [a14]
-                                    annotations:
-                                     quality: 0.6
-                                     energy_j: 15
-                                a14:
+                                a18:
                                     function: ../action/action.js
                                     suivant: []
                                     annotations:
                                      quality: 0.81
-                                     energy_j: 25
+                                     energy_j: 35
+                                a19:
+                                    function: ../action/action.js
+                                    suivant: []
+                                    annotations:
+                                     quality: 0.6
+                                     energy_j: 15
+                                # a14:
+                                #     function: ../action/action.js
+                                #     suivant: []
+                                #     annotations:
+                                #      quality: 0.81
+                                #      energy_j: 25
                             suivant: [a8]
                     a4:
                         function: ../action/action.js
@@ -87,20 +93,26 @@ packages:
                          energy_j: 32
                     a10:
                         function: ../action/action.js
-                        suivant: [a8]
+                        suivant: [a20]
                         annotations:
                          quality: 0.85
                          energy_j: 30
                     a6:
                         function: ../action/action.js
-                        suivant: [a8]
+                        suivant: [a20]
                         annotations:
                          quality: 0.88
                          energy_j: 31
                     a8:
                         function: ../action/action.js
-                        suivant: []
+                        suivant: [a20]
                         annotations:
                          quality: 1
                          energy_j: 35
+                    a20:
+                        function: ../action/action.js
+                        suivant: []
+                        annotations:
+                         quality: 0.6
+                         energy_j: 15
                     

@@ -41,11 +41,13 @@ def process_parallel_actions(actions):
             combinations = generate_parallel_combinations(branch_sequences)
             new_action_names = []
 
-            suivant = details.get("suivant", [])
+            suivant = details["parallel"].get("suivant", [])
+            print('details', details)   
 
             for i, combo in enumerate(combinations, 1):
                 new_action_name = f"A{i}"
                 new_action_names.append(new_action_name)
+                print('suivant', suivant)
                 new_actions[new_action_name] = {
                     "function": f"../action/{new_action_name}.py",
                     "suivant": [suivant[0]] if suivant else []
@@ -164,4 +166,4 @@ def parsing_parallel_actions(input_yaml_path, output_yaml_path):
 
 
 # Exemple d'utilisation
-parsing_parallel_actions('manifest.yaml', 'Manifest.yaml')
+parsing_parallel_actions('../manifest/manifest.yaml', 'Manifest.yaml')

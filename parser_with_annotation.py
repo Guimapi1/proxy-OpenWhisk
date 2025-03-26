@@ -23,13 +23,14 @@ def parsing(input_yaml_path, output_yaml_path):
         data = yaml.safe_load(file)
     
     manifest = {"packages": {}}
+
  
     for pckName, package in data.get("packages", {}).items():
-        
+        # print(package.get("app", {}).items())
         for appName, seq in package.get("app", {}).items():
-
             actions = data["packages"][pckName]["app"][appName]["actions"]
-            start_action = "a0"
+            # start_action = "start"
+            start_action = next(iter(actions))
             sequences = generateSequences(actions, start_action, [], [], appName)
 
             # Remove "suivant" from actions
@@ -49,4 +50,62 @@ def parsing(input_yaml_path, output_yaml_path):
 
 
 # # Example usage
-parsing('manifest.yaml', 'Manifest.yaml')
+# parsing('../manifest/manifest.yaml', 'Manifest.yaml')
+parsing('Manifest.yaml', 'Manifest1.yaml')
+
+
+
+# import yaml
+# import random  # To generate random quality values
+
+# def generateSequences(actions, current, path, sequences, appName, sequence_prefix="S"):
+#     path.append(current)
+    
+#     if "parallel" in actions[current] and actions[current]["parallel"].get("true"):
+#         parallel_branches = actions[current]["parallel"]["true"]
+#         for i, (branch_name, branch_start) in enumerate(parallel_branches.items(), 1):
+#             branch_sequences = []
+#             generateSequences(actions, list(branch_start.keys())[0], [], branch_sequences, appName, f"{current}.branche{i}.seq")
+#             sequences.extend(branch_sequences)
+#     elif not actions[current].get("suivant"):  # If no successors, store the sequence
+#         sequence_name = f"{sequence_prefix}{len(sequences) + 1}"
+#         sequences.append((sequence_name, ", ".join(path)))
+#     else:
+#         for next_action in actions[current]["suivant"]:
+#             generateSequences(actions, next_action, path[:], sequences, appName, sequence_prefix)  # Pass a copy of path
+
+# def parsing(input_yaml_path, output_yaml_path):
+#     with open(input_yaml_path, 'r', encoding='utf-8') as file:
+#         data = yaml.safe_load(file)
+    
+#     manifest = {"packages": {}}
+    
+#     for pckName, package in data.get("packages", {}).items():
+#         for appName, seq in package.get("app", {}).items():
+#             actions = seq.get("actions", {})
+#             start_action = "start"
+#             sequences = []
+            
+#             generateSequences(actions, start_action, [], sequences, appName)
+            
+#             formatted_sequences = {
+#                 f"{appName}.{seq_name}": {
+#                     "actions": actions_seq,
+#                     "annotations": {"quality": round(random.uniform(0, 1), 2)}
+#                 }
+#                 for seq_name, actions_seq in sequences
+#             }
+            
+#             # Remove "suivant" from actions to avoid redundancy in output
+#             for action in actions.values():
+#                 action.pop("suivant", None)
+            
+#             manifest["packages"][pckName] = {
+#                 "app": {appName: {"actions": actions, "sequences": formatted_sequences}}
+#             }
+    
+#     with open(output_yaml_path, 'w', encoding='utf-8') as file:
+#         yaml.dump(manifest, file, allow_unicode=True, default_flow_style=False, sort_keys=False)
+    
+# # Example usage
+# parsing('../manifest/manifest.yaml', 'Manifest.yaml')

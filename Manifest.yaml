@@ -1,0 +1,114 @@
+packages:
+  greenFaas:
+    actions:
+      start:
+        function: ../action/action.js
+        annotations:
+          quality: 1
+          energy_j: 20
+      a1:
+        function: ../action/action.js
+        annotations:
+          quality: 0.97
+          energy_j: 40
+      a7:
+        function: ../action/action.js
+        annotations:
+          quality: 0.87
+          energy_j: 34
+      a9:
+        function: ../action/action.js
+        annotations:
+          quality: 0.87
+          energy_j: 34
+      a4:
+        function: ../action/action.js
+        annotations:
+          quality: 0.7
+          energy_j: 25
+      a5:
+        function: ../action/action.js
+        annotations:
+          quality: 0.95
+          energy_j: 35
+      a11:
+        function: ../action/action.js
+        annotations:
+          quality: 0.9
+          energy_j: 32
+      a10:
+        function: ../action/action.js
+        annotations:
+          quality: 0.85
+          energy_j: 30
+      a6:
+        function: ../action/action.js
+        annotations:
+          quality: 0.88
+          energy_j: 31
+      a8:
+        function: ../action/action.js
+        annotations:
+          quality: 1
+          energy_j: 35
+      a20:
+        function: ../action/action.js
+        annotations:
+          quality: 0.6
+          energy_j: 15
+      start.branche1:
+        function: ../action/action.js
+        annotations:
+          quality: 0.71
+          energy_j: 23
+      a2:
+        function: ../action/action.js
+        annotations:
+          quality: 0.81
+          energy_j: 28
+      start.branche2:
+        function: ../action/action.js
+        annotations:
+          quality: 0.5
+          energy_j: 15
+      a18:
+        function: ../action/action.js
+        annotations:
+          quality: 0.81
+          energy_j: 35
+      a19:
+        function: ../action/action.js
+        annotations:
+          quality: 0.6
+          energy_j: 15
+      A1:
+        function: ../action/A1.py
+      A2:
+        function: ../action/A2.py
+    sequences:
+      test.S1:
+        actions: start, a1, a5, a11, a10, a20
+        annotations:
+          quality: 0.34
+      test.S2:
+        actions: start, a7, a5, a11, a10, a20
+        annotations:
+          quality: 0.71
+      test.S3:
+        actions: start, a7, a9, A1, a8, a20
+        annotations:
+          quality: 0.81
+      test.S4:
+        actions: start, a7, a9, A2, a8, a20
+        annotations:
+          quality: 0.91
+      test.S5:
+        actions: start, a4, a6, a20
+        annotations:
+          quality: 0.09
+      a9.branche1.seq1:
+        actions: start.branche1, a2
+      a9.branche2.seq1:
+        actions: start.branche2, a18
+      a9.branche2.seq2:
+        actions: start.branche2, a19
