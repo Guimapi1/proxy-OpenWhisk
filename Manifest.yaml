@@ -82,33 +82,43 @@ packages:
           quality: 0.6
           energy_j: 15
       A1:
-        function: ../action/A1.py
+        function: ./action/A1.py
+        annotations:
+          quality: 0.23291550000000003
       A2:
-        function: ../action/A2.py
+        function: ./action/A2.py
+        annotations:
+          quality: 0.17253000000000002
     sequences:
+      a9.branche1.seq1:
+        actions: start.branche1, a2
+        annotations:
+          quality: 0.5751000000000001
+      a9.branche2.seq1:
+        actions: start.branche2, a18
+        annotations:
+          quality: 0.405
+      a9.branche2.seq2:
+        actions: start.branche2, a19
+        annotations:
+          quality: 0.3
       test.S1:
         actions: start, a1, a5, a11, a10, a20
         annotations:
-          quality: 0.34
+          quality: 0.4229685
       test.S2:
         actions: start, a7, a5, a11, a10, a20
         annotations:
-          quality: 0.71
+          quality: 0.3793635
       test.S3:
         actions: start, a7, a9, A1, a8, a20
         annotations:
-          quality: 0.81
+          quality: 0.10577624517000002
       test.S4:
         actions: start, a7, a9, A2, a8, a20
         annotations:
-          quality: 0.91
+          quality: 0.0783527742
       test.S5:
         actions: start, a4, a6, a20
         annotations:
-          quality: 0.09
-      a9.branche1.seq1:
-        actions: start.branche1, a2
-      a9.branche2.seq1:
-        actions: start.branche2, a18
-      a9.branche2.seq2:
-        actions: start.branche2, a19
+          quality: 0.3696
