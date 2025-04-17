@@ -23,6 +23,7 @@ def handle_request(namespace, filter_string, package_name=None):
     try:
         # Récupérer toutes les actions du namespace depuis OpenWhisk
         actions_url = f"{OPENWHISK_URL}/namespaces/{namespace}/actions"
+        print(f"Récupération des actions depuis : {actions_url}")
         response = requests.get(actions_url)
 
         if response.status_code != 200:
@@ -31,22 +32,37 @@ def handle_request(namespace, filter_string, package_name=None):
         actions = response.json()
 
         # Filtrer les séquences qui commencent par filter_string et respectent min/max
-        sequences = [
+        filtered_sequences = [
             action for action in actions
             if action['name'].startswith(filter_string)
             and min_quality <= next((ann["value"] for ann in action["annotations"] if ann["key"] == "quality"), 0) <= max_quality
         ]
 
-        if not sequences:
+
+        # Ensuite, trouver celle avec l'énergie minimale (si la liste n'est pas vide)
+        if filtered_sequences:
+            min_energy_sequence = min(
+                filtered_sequences,
+                key=lambda action: next((ann["value"] for ann in action["annotations"] if ann["key"] == "energy_j"), float('inf'))
+            )
+
+        # # Trouver l'action avec la valeur minimale d'énergie
+        # min_energy_action = min(
+        #     sequences, 
+        #     key=lambda action: min(ann["value"] for ann in action["annotations"] if ann["key"] == "energy"),
+        #     default=None
+        # )
+
+        if not filtered_sequences:
             return jsonify({"error": "Aucune séquence trouvée avec ce filtre"}), 404
 
-        random_sequence = random.choice(sequences)
-        print(f"Séquence sélectionnée : {random_sequence['name']}")
+        # random_sequence = random.choice(filtered_sequences)
+        print(f"Séquence sélectionnée : {min_energy_sequence['name']}")
 
         if package_name:
-            openwhisk_url = f"{OPENWHISK_URL}/namespaces/{namespace}/actions/{package_name}/{random_sequence['name']}"
+            openwhisk_url = f"{OPENWHISK_URL}/namespaces/{namespace}/actions/{package_name}/{min_energy_sequence['name']}"
         else:
-            openwhisk_url = f"{OPENWHISK_URL}/namespaces/{namespace}/actions/{random_sequence['name']}"
+            openwhisk_url = f"{OPENWHISK_URL}/namespaces/{namespace}/actions/{min_energy_sequence['name']}"
 
         # Invoquer la séquence sélectionnée sur OpenWhisk
         invoke_response = requests.post(openwhisk_url)

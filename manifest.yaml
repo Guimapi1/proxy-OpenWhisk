@@ -55,7 +55,7 @@ packages:
             a8:
                 function: ../action/action.js
                 annotations:
-        sequences:
-            test:   
-                action: a0,(a1, a5, a11, a10, a20) or (a7, (a5, a11, a10, a20) or (a9, (a17, a2) and (a16, a18 or a19), a8, a20)) or (a4, a6, a20)
+    sequences:
+        test:   
+            action: a0,(a1, a5, a11, a10, a20) or (a7, (a5, a11, a10, a20) or (a9, (a17, a2) and (a16, a18 or a19), a8, a20)) or (a4, a6, a20)
                   

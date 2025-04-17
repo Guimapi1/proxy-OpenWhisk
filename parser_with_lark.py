@@ -2,7 +2,7 @@ from lark import Lark, Transformer
 import yaml
 import os
 
-# Définition de la grammaire mise à jour
+# Définition de la grammaire
 graph_grammar = """
     ?start: sequence
 
@@ -276,6 +276,10 @@ def process_yaml_file(input_file, output_file):
     
         # Trouver la séquence à traiter
         sequences = yaml_data.get('packages', {}).get(pck_name, {}).get('sequences', {})
+        if not sequences:
+            print(f"Aucun graphe trouvé, veullez vérifier le fichier YAML.")
+            return {}
+
         for seq_name, seq_info in sequences.items():
             graph_expression = seq_info.get('action', '')
             
