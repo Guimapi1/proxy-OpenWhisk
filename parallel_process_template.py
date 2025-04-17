@@ -2,17 +2,15 @@
 
 import requests
 from multiprocessing import Process, Manager, Lock
-from dotenv import dotenv_values # type: ignore
 
 
-AUTH = dotenv_values(".env")['OPENWHISK_AUTH']  
-OPENWHISK_URL = f"http://{AUTH}@172.17.0.1:3233/api/v1"
+OPENWHISK_URL = f"http://172.17.0.1:3233/api/v1/web"
 
 def start(action, args, result, lock):
     # action : le nom de l'action
     # result : Le dict pour garder les résultats
     
-    apihost = f"{OPENWHISK_URL}/namespaces/guest/actions/greenFaas/{action}"
+    apihost = f"{OPENWHISK_URL}/{namespace}/{package_name}/{action}"
 
     # print(f"hello, I'm {action}")
     
@@ -31,7 +29,7 @@ def main(args, action_args):
 
     # Créer un processus pour chaque élément de combo
     processes = []
-    for _, action_name in action_args.items():
+    for action_name in action_args.items():
         p = Process(target=start, args=(action_name, args, result, lock))
         processes.append(p)
         p.start()

@@ -4,59 +4,31 @@ packages:
             start:
                 function: ../action/action.js
                 annotations:
-                    quality: 1
-                    energy_j: 20
             a1:
                 function: ../action/action.js
                 annotations:
-                    quality: 0.97
-                    energy_j: 40
             a7:
                 function: ../action/action.js
                 annotations:
-                    quality: 0.87
-                    energy_j: 34
             a4:
                 function: ../action/action.js
                 annotations:
-                    quality: 0.7
-                    energy_j: 25
             a5:
                 function: ../action/action.js
                 annotations:
-                    quality: 0.95
-                    energy_j: 35
             a11:
                 function: ../action/action.js
                 annotations:
-                    quality: 0.9
-                    energy_j: 32
             a10:
                 function: ../action/action.js
                 annotations:
-                    quality: 0.85
-                    energy_j: 30
             a6:
                 function: ../action/action.js
                 annotations:
-                    quality: 0.88
-                    energy_j: 31
             a8:
                 function: ../action/action.js
                 annotations:
-                    quality: 1
-                    energy_j: 35
-    # || represent the alternative ou
-    # // represent the sequential execution
-    # [] represent a sequence of actions
-    # , represent the next action
-    sequences: 
-        test: a0,[a1, a5, a11, a10, a20] || [a7, [a5, a11, a10, a20] || [a9, [a17, a2] // [a16, a18 || a19], a8, a20]] || [a4, a6, a20]
-
-
-    sequences:
-        test:   
-            action: a0,[a1, a5, a11, a10, a20] || [a7, [a5, a11, a10, a20] || [a9, [a17, a2] // [a16, a18 || a19], a8, a20]] || [a4, a6, a20]
-        S4:
-            action: start, a1, a5, a11, a10, a20
-                 
+        sequences:
+            test:   
+                action: a0,(a1, a5, a11, a10, a20) or (a7, (a5, a11, a10, a20) or (a9, (a17, a2) and (a16, a18 or a19), a8, a20)) or (a4, a6, a20)
+                  
