@@ -1,7 +1,7 @@
 packages:
     greenFaas:
         actions:
-            start:
+            a0:
                 function: ../action/action.js
                 annotations:
             a1:
